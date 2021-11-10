@@ -72,7 +72,7 @@ const TableStyled = styled.div `
         p {
             font-size: 3rem;
             
-            margin:  0 1rem 1rem
+            margin:  1.2rem;
         }
     }
 
@@ -152,6 +152,7 @@ function Table(){
         setResultGame(results)
         if(results === "Ganaste"){
             setScore(score + 1);
+         
            
         }
         
@@ -159,6 +160,7 @@ function Table(){
     const restartGame = (()=>{
         setPlaying(false)
         setResultGame('')
+        
         
     })
 
@@ -179,12 +181,12 @@ function Table(){
             :(
                 <>
                     <div className="pick-container">
-                        <Ficha name={pick} /> 
-                        <p>You Picked</p>
+                        <Ficha name={pick} isShadowAnimated={(resultGame === "Ganaste")}/> 
+                        <p>Elegiste</p>
                     </div>
                     <div className="pick-container">
-                        <Ficha name={housePick} /> 
-                        <p>The House Picked</p>
+                        <Ficha name={housePick} isShadowAnimated={(resultGame === "Perdiste")} /> 
+                        <p>La máquina Eligió</p>
                     </div>
                     <div className="restart">
                         {

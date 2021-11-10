@@ -5,6 +5,13 @@ import {Button} from '../Button'
 const RulesStyled = styled.div `
     text-align: center;
 
+    @media screen and (min-width: 768px){
+        
+        position: absolute;
+        bottom: 2.5em;
+        right: 2.5em;
+    }
+
 `
 
 function Rules({setOpenModal}){

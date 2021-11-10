@@ -1,6 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
+const shadow = keyframes `
+
+    to{
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, .075), 0 0 0 40px rgba(255, 255, 255, .05), 0 0 0 60px rgba(255, 255, 255, .02);
+        transform: scale(1.1);
+    }
+`
+const rotate = keyframes `
+
+    to{
+        transform: rotateY(360deg);
+    }
+`
 const FichaStyled = styled.div `
     width: 130px;
     height: 125px;
@@ -16,8 +29,8 @@ const FichaStyled = styled.div `
     cursor: pointer;
     position:relative;
     z-index:2;
-    box-shadow: 0 0 0 40px rgba(255, 255, 255, .075), 0 0 0 80px rgba(255, 255, 255, .05), 0 0 0 120px rgba(255, 255, 255, .02);
-    
+    ${({isShadowAnimated}) => isShadowAnimated && 'box-shadow: 0 0 0 0 rgba(255, 255, 255, .075), 0 0 0 0 rgba(255, 255, 255, .05), 0 0 0 0 rgba(255, 255, 255, .02);'}
+    animation: 1s ${({isShadowAnimated}) => isShadowAnimated ? shadow : " "} forwards;
 
     &:active{
         transform: scale(.9)
@@ -32,6 +45,10 @@ const FichaStyled = styled.div `
         align-items: center;
         justify-content: center;
         background:  ${({name}) => (name === '') ? '#122343' : 'transparent' };;
+
+        img {
+            animation: 1s ${({isShadowAnimated}) => isShadowAnimated ? rotate : " "} forwards;
+        }
     }
 
     @media screen and (min-width: 768px){
@@ -61,7 +78,7 @@ const FichaStyled = styled.div `
         }
     };
 
-function Ficha({name= '', onClick}){
+function Ficha({name= '', onClick, isShadowAnimated}){
     const color = colors[name] ? colors[name] : colors.default
     function handleClick(){
         if(onClick){
@@ -69,7 +86,7 @@ function Ficha({name= '', onClick}){
         }           
     }
         return (
-        <FichaStyled color={color} onClick={handleClick} name={name}>
+        <FichaStyled color={color} onClick={handleClick} name={name} isShadowAnimated={isShadowAnimated}>
             <div className="box" >
             <img src={`./images/icon-${name}.svg`} alt="" />
             </div>

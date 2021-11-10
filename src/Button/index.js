@@ -12,6 +12,11 @@ const ButtonStyled = styled.div `
     justify-content: center;
     padding: 1em;
     cursor: pointer;
+
+    &:hover {
+        background: white;
+        color: #131537;
+    }
     
 
 `
